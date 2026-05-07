@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <radialGradient id="shell" cx="45%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#6fb3d1"/>
+      <stop offset="45%" stop-color="#2d6f93"/>
+      <stop offset="100%" stop-color="#102f3f"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="900" fill="#f7f4ea"/>
+  <text x="70" y="90" font-family="Arial" font-size="40" font-weight="700" fill="#183a37">Ceramic Hang</text>
+  <text x="70" y="128" font-family="Arial" font-size="18" fill="#52615e">Slip-cast ceramic handpan-inspired tonal vessel - concept render</text>
+  <ellipse cx="700" cy="520" rx="500" ry="150" fill="#102f3f" opacity="0.28"/>
+  <path d="M240 520 C360 245, 540 180, 700 180 C860 180, 1040 245, 1160 520 C990 640, 410 640, 240 520 Z" fill="url(#shell)" stroke="#102f3f" stroke-width="8"/>
+  <ellipse cx="700" cy="280" rx="96" ry="56" fill="#1f5f86" stroke="#dbe7ec" stroke-width="4" opacity="0.9"/>
+  <g fill="#2f83ad" stroke="#dbe7ec" stroke-width="4" opacity="0.86">
+    <ellipse cx="905" cy="350" rx="70" ry="48" transform="rotate(18 905 350)"/>
+    <ellipse cx="975" cy="500" rx="62" ry="44" transform="rotate(55 975 500)"/>
+    <ellipse cx="800" cy="590" rx="58" ry="40" transform="rotate(105 800 590)"/>
+    <ellipse cx="600" cy="590" rx="54" ry="38" transform="rotate(155 600 590)"/>
+    <ellipse cx="425" cy="500" rx="50" ry="35" transform="rotate(205 425 500)"/>
+    <ellipse cx="495" cy="350" rx="46" ry="32" transform="rotate(245 495 350)"/>
+    <ellipse cx="605" cy="245" rx="43" ry="30" transform="rotate(292 605 245)"/>
+    <ellipse cx="795" cy="245" rx="41" ry="28" transform="rotate(338 795 245)"/>
+  </g>
+  <path d="M290 565 C430 690, 970 690, 1110 565" fill="none" stroke="#a95e35" stroke-width="24" opacity="0.85"/>
+  <text x="70" y="795" font-family="Arial" font-size="17" fill="#52615e">Generated concept art. Critical dimensions live in design.md and Ceramic-Hang-Design.xlsx.</text>
+</svg>

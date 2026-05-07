@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#fbfaf6"/>
+  <text x="60" y="70" font-family="Arial" font-size="34" font-weight="700" fill="#183a37">Ceramic Hang - Shell Section</text>
+  <text x="60" y="108" font-family="Arial" font-size="16" fill="#52615e">Concept section through center ding and gu port</text>
+  <path d="M180 540 C330 250, 520 170, 700 170 C880 170, 1070 250, 1220 540" fill="none" stroke="#183a37" stroke-width="10"/>
+  <path d="M215 540 C355 300, 535 225, 700 225 C865 225, 1045 300, 1185 540" fill="none" stroke="#8ba0a0" stroke-width="5"/>
+  <path d="M180 540 C360 650, 1040 650, 1220 540" fill="none" stroke="#183a37" stroke-width="10"/>
+  <path d="M250 535 C410 595, 990 595, 1150 535" fill="none" stroke="#8ba0a0" stroke-width="5"/>
+  <ellipse cx="700" cy="215" rx="95" ry="28" fill="#2d6f93" opacity="0.8" stroke="#102f3f" stroke-width="3"/>
+  <text x="655" y="158" font-family="Arial" font-size="18" fill="#183a37">center ding field</text>
+  <line x1="700" y1="168" x2="700" y2="205" stroke="#183a37" stroke-width="2"/>
+  <circle cx="700" cy="603" r="70" fill="#fbfaf6" stroke="#a95e35" stroke-width="8"/>
+  <text x="790" y="610" font-family="Arial" font-size="18" fill="#a95e35">gu port 3.5 in</text>
+  <line x1="770" y1="603" x2="885" y2="603" stroke="#a95e35" stroke-width="2"/>
+  <text x="1050" y="190" font-family="Arial" font-size="18" fill="#183a37">dome height: 4.5 in</text>
+  <line x1="1245" y1="170" x2="1245" y2="540" stroke="#183a37" stroke-width="3"/>
+  <line x1="1230" y1="170" x2="1260" y2="170" stroke="#183a37" stroke-width="3"/>
+  <line x1="1230" y1="540" x2="1260" y2="540" stroke="#183a37" stroke-width="3"/>
+  <text x="235" y="590" font-family="Arial" font-size="18" fill="#183a37">rim seam / joining band</text>
+  <line x1="410" y1="585" x2="520" y2="545" stroke="#183a37" stroke-width="2"/>
+  <text x="60" y="760" font-family="Arial" font-size="16" fill="#52615e">Wall target: 0.22-0.30 in. Clay shrinkage assumed 12 percent until measured. Firing support ring must avoid blocking shrinkage.</text>
+  <text x="60" y="800" font-family="Arial" font-size="16" fill="#52615e">Tone-field detail requires test coupons before this section becomes production geometry.</text>
+</svg>

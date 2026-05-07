@@ -1,0 +1,5 @@
+operation_id,phase,operation,datum,tooling,workholding,inputs,outputs,release_check
+CHG-CNC-001,Master,3D print upper shell master,centerline and rim plane,large-format FDM or print service,printer bed or segmented registration,cad/ceramic_hang_master.scad,sealed upper master,dimension check against scaled CAD
+CHG-CNC-002,Master,3D print lower shell master,centerline and gu center,large-format FDM or print service,printer bed or segmented registration,cad/ceramic_hang_master.scad,sealed lower master,gu and rim datum check
+CHG-CNC-003,Fixture,make cottle/cradle templates,rim OD and centerline,router or laser,flat sheet fixture,drawing-brief.md,mold cottle and drying cradle templates,no undercut or clearance conflict
+

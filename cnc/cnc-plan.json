@@ -1,0 +1,38 @@
+{
+  "project": "Ceramic Hang",
+  "status": "pre-CAM planning only",
+  "units": "in",
+  "operations": [
+    {
+      "id": "CHG-CNC-001",
+      "operation": "3D print upper master",
+      "datum": "shell centerline and rim plane",
+      "tooling": "large-format FDM or outsourced print",
+      "workholding": "printer bed / segmented print registration",
+      "inputs": ["cad/ceramic_hang_master.scad", "measured shrinkage"],
+      "outputs": ["sealed upper master"],
+      "release_check": "master dimensions match scaled CAD within TBD tolerance"
+    },
+    {
+      "id": "CHG-CNC-002",
+      "operation": "3D print lower master",
+      "datum": "shell centerline and gu center",
+      "tooling": "large-format FDM or outsourced print",
+      "workholding": "printer bed / segmented print registration",
+      "inputs": ["cad/ceramic_hang_master.scad", "measured shrinkage"],
+      "outputs": ["sealed lower master"],
+      "release_check": "gu and rim datums match scaled CAD"
+    },
+    {
+      "id": "CHG-CNC-003",
+      "operation": "optional CNC cottle/cradle patterns",
+      "datum": "rim OD and centerline",
+      "tooling": "router or laser depending on stock",
+      "workholding": "flat sheet fixture",
+      "inputs": ["drawing-brief.md"],
+      "outputs": ["mold cottle templates", "drying cradle pattern"],
+      "release_check": "templates clear master and do not trap undercuts"
+    }
+  ]
+}
+

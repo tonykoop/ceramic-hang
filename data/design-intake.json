@@ -1,0 +1,16 @@
+{
+  "instrument": "Ceramic Hang",
+  "mode": "Mode A - single-instrument repo at root",
+  "concept": "Slip-cast ceramic handpan-inspired tonal vessel",
+  "target_key": "G minor",
+  "note_count": 9,
+  "manufacturing": "3D printed master, plaster mold, slip casting",
+  "primary_unknowns": [
+    "clay body elastic properties",
+    "measured shrinkage",
+    "tone-field geometry that rings after firing",
+    "glaze damping",
+    "transport durability"
+  ]
+}
+

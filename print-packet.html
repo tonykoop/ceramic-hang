@@ -1,0 +1,618 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Ceramic Hang Capstone</title><style>
+body { font-family: Arial, sans-serif; color: #111; line-height: 1.35; max-width: 900px; margin: 32px auto; }
+h1 { font-size: 28px; border-bottom: 2px solid #222; padding-bottom: 6px; }
+h2 { font-size: 22px; margin-top: 28px; }
+h3 { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 12px; }
+th, td { border: 1px solid #888; padding: 6px; vertical-align: top; }
+th { background: #e8eef8; }
+pre { white-space: pre-wrap; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; }
+.page-break { page-break-before: always; break-before: page; }
+@media print { body { margin: 0.5in; max-width: none; } a { color: #111; } }
+</style></head><body>
+<h1>Ceramic Hang Capstone Print Packet</h1>
+
+<p>Generated: 2026-05-06</p>
+<p>Packet folder: `/mnt/c/Users/Tony/Documents/GitHub/ceramic-hang`</p>
+
+<h2>File Map</h2>
+
+<table>
+<tr><th>File</th><th>Purpose</th></tr>
+<tr><td>`design.md`</td><td>Project intent, catalog metadata, assumptions, and validation plan.</td></tr>
+<tr><td>`bom.csv`</td><td>Starter bill of materials with part categories, quantities, drawing refs, and notes.</td></tr>
+<tr><td>`sourcing.csv`</td><td>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</td></tr>
+<tr><td>`cut-list.csv`</td><td>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</td></tr>
+<tr><td>`drawing-brief.md`</td><td>Manufacturing drawing and technical product sketch brief.</td></tr>
+<tr><td>`assembly-manual.md`</td><td>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</td></tr>
+<tr><td>`validation.csv`</td><td>Target/measured values, tolerance, environment, result, and tuning/build action log.</td></tr>
+<tr><td>`supplier-rfq.md`</td><td>Supplier email/request-for-quote starter.</td></tr>
+<tr><td>`visual-bom-brief.md`</td><td>Art direction for an image-forward visual BOM.</td></tr>
+<tr><td>`wolfram-starter.wl`</td><td>Wolfram starter for physics, optimization, visualization, and validation.</td></tr>
+<tr><td>`README.md`</td><td>Project artifact.</td></tr>
+<tr><td>`family-spec.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`photo-shotlist.md`</td><td>Project artifact.</td></tr>
+<tr><td>`risks.md`</td><td>Project artifact.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>design.md</h2>
+
+<p>Project intent, catalog metadata, assumptions, and validation plan.</p>
+
+<h1>Ceramic Hang Design</h1>
+
+<h2>Design Intent</h2>
+
+<p>Design a slip-cast ceramic, handpan-inspired tonal vessel that explores raised/isolated ceramic tone fields on a shallow resonant shell. The project is a research instrument first: the goal is to learn whether molded ceramic tone fields can produce musically useful fundamentals and partials after firing, and what clay body, wall thickness, tone-field geometry, and firing schedule make that repeatable.</p>
+
+<p>The visual target is an approachable 18 inch handpan-like form, but the engineering target is more careful: a ceramic tonal vessel whose final design may diverge from steel handpans if the material asks for a different geometry.</p>
+
+<h2>Governing Model</h2>
+
+<p>This instrument is governed by coupled plate/shell vibration plus Helmholtz body resonance.</p>
+
+<pre><code>
+tone_field_f1 ~= (kappa / (2*pi)) * (h / a^2) * sqrt(E / (rho * (1 - nu^2)))
+</code></pre>
+
+<p>Where `h` is local tone-field thickness, `a` is effective field radius, `E` is Young&#x27;s modulus, `rho` is density, `nu` is Poisson ratio, and `kappa` is an empirical boundary/shape coefficient. For ceramic this equation is a sanity check, not a final predictor.</p>
+
+<pre><code>
+f_gu = c/(2*pi) * sqrt(A_gu / (V_shell * L_eff_gu))
+L_eff_gu = wall + 0.6 * sqrt(A_gu/pi)
+</code></pre>
+
+<p>The gu/port resonance should be measured as a coupled body mode. It may support warmth and sustain, but it will not tune the tone fields the way hammered steel tuning does.</p>
+
+<h2>Design Targets</h2>
+
+<table>
+<tr><th>Parameter</th><th>Target</th><th>Status</th></tr>
+<tr><td>Outer diameter</td><td>18 in</td><td>design target</td></tr>
+<tr><td>Overall height</td><td>4.5 in</td><td>design target</td></tr>
+<tr><td>Fired wall thickness</td><td>0.22-0.30 in</td><td>experiment range</td></tr>
+<tr><td>Clay shrinkage</td><td>12 percent</td><td>assumption until measured</td></tr>
+<tr><td>Shell volume</td><td>600-850 in3</td><td>derived estimate</td></tr>
+<tr><td>Gu diameter</td><td>3.5 in</td><td>first prototype</td></tr>
+<tr><td>Clay body</td><td>Cone 6 stoneware or porcelain casting slip</td><td>TBD</td></tr>
+<tr><td>Finish</td><td>Exterior-only glaze or burnished/oxide surface</td><td>TBD</td></tr>
+<tr><td>Primary key</td><td>G minor 9-note layout</td><td>assumption</td></tr>
+</table>
+
+<h2>Target Note Layout</h2>
+
+<table>
+<tr><th>Field</th><th>Note</th><th>Target Hz</th><th>Function</th><th>First geometry assumption</th></tr>
+<tr><td>Ding</td><td>G3</td><td>196.00</td><td>center fundamental</td><td>4.0 in raised oval/circle</td></tr>
+<tr><td>T1</td><td>Bb3</td><td>233.08</td><td>low outer field</td><td>3.4 in oval</td></tr>
+<tr><td>T2</td><td>C4</td><td>261.63</td><td>outer field</td><td>3.2 in oval</td></tr>
+<tr><td>T3</td><td>D4</td><td>293.66</td><td>outer field</td><td>3.0 in oval</td></tr>
+<tr><td>T4</td><td>F4</td><td>349.23</td><td>outer field</td><td>2.75 in oval</td></tr>
+<tr><td>T5</td><td>G4</td><td>392.00</td><td>outer field</td><td>2.55 in oval</td></tr>
+<tr><td>T6</td><td>Bb4</td><td>466.16</td><td>outer field</td><td>2.35 in oval</td></tr>
+<tr><td>T7</td><td>C5</td><td>523.25</td><td>outer field</td><td>2.20 in oval</td></tr>
+<tr><td>T8</td><td>D5</td><td>587.33</td><td>outer field</td><td>2.05 in oval</td></tr>
+</table>
+
+<p>The note layout is intentionally marked as an assumption. Ceramic fields may prefer fewer larger notes, different intervals, or a tongue/slit hybrid if isolated plate fields do not ring cleanly.</p>
+
+<h2>Manufacturing Strategy</h2>
+
+<p>Use a slip-cast two-shell body:</p>
+
+<p>1. CAD an upper dome with raised tone-field islands and a lower shell with gu port.</p>
+<p>2. 3D print master positives oversized by measured clay shrinkage.</p>
+<p>3. Make plaster molds with clean registration and no trapped undercuts.</p>
+<p>4. Slip cast upper and lower shells separately.</p>
+<p>5. Join at leather-hard stage with a reinforced rim/luting band.</p>
+<p>6. Bisque fire before any glaze commitment.</p>
+<p>7. Measure tone fields, body modes, gu resonance, cracks, and distortion.</p>
+<p>8. Iterate field thickness, island geometry, and clay body before decorative finishing.</p>
+
+<h2>Prototype Ladder</h2>
+
+<table>
+<tr><th>Prototype</th><th>Goal</th><th>Success criteria</th></tr>
+<tr><td>CHG-P0 tone coupon</td><td>Test isolated ceramic field shapes</td><td>At least one coupon rings with a clear decay and measurable pitch</td></tr>
+<tr><td>CHG-P1 mini dome</td><td>Test 3 tone fields on a small shell</td><td>No cracks; pitch trend follows field size/thickness</td></tr>
+<tr><td>CHG-P2 18 in blank</td><td>Test full shell casting, gu, seam, and body mode</td><td>Shell survives drying/bisque and gu resonance is measurable</td></tr>
+<tr><td>CHG-P3 5-note vessel</td><td>First musical layout</td><td>Five fields within +/-75 cents after bisque or clear correction path</td></tr>
+<tr><td>CHG-P4 9-note G minor</td><td>Full concept</td><td>Playable hand pattern, stable fields, acceptable sustain</td></tr>
+</table>
+
+<h2>Empirical Questions</h2>
+
+<ul>
+<li>What clay body gives the longest decay without excessive fragility?</li>
+<li>Do raised tone fields, thinned tone fields, or cut/relief-bounded fields speak best?</li>
+<li>Does glaze damp the fields too much?</li>
+<li>Can tone fields be tuned at greenware/leather-hard stage accurately enough to survive firing?</li>
+<li>Is a 9-note layout realistic in ceramic, or should the first product be 5-7 notes?</li>
+<li>Should the final instrument become a ceramic tongue-handpan hybrid instead of a pure tone-field shell?</li>
+</ul>
+
+<h2>Assumptions And Unknowns</h2>
+
+<ul>
+<li>Elastic properties are derived estimates until test bars are fired and measured.</li>
+<li>No empirical ceramic handpan correction data exists yet in this repo.</li>
+<li>The screenshot reference is visual inspiration only; no supplier dimensions or pricing are used as source data.</li>
+<li>Final tuning may require new mold masters rather than post-fire correction.</li>
+<li>Structural safety matters: the instrument must survive hand strikes, thermal gradients, and transport.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>bom.csv</h2>
+
+<p>Starter bill of materials with part categories, quantities, drawing refs, and notes.</p>
+
+<table>
+<tr><th>item_id</th><th>category</th><th>item</th><th>qty</th><th>spec</th><th>make_buy</th><th>estimated_cost</th><th>source_note</th><th>drawing_ref</th><th>notes</th></tr>
+<tr><td>CHG-BOM-001</td><td>Clay</td><td>Cone 6 casting slip</td><td>5 gal</td><td>Stoneware or porcelain casting slip with measured shrinkage</td><td>Buy</td><td>derived estimate $40-80</td><td>Date-check before purchase</td><td>CHG-DRW-001</td><td>Choose one clay body for the first controlled run.</td></tr>
+<tr><td>CHG-BOM-002</td><td>Mold</td><td>#1 pottery plaster</td><td>75 lb</td><td>Absorbent pottery plaster for upper/lower shell molds</td><td>Buy</td><td>derived estimate $50-90</td><td>Date-check before purchase</td><td>CHG-DRW-002</td><td>Large dome molds will consume more plaster than udu/ocarina molds.</td></tr>
+<tr><td>CHG-BOM-003</td><td>Master</td><td>3D printed upper shell master</td><td>1</td><td>Oversized by measured shrinkage with tone-field islands</td><td>Make</td><td>derived estimate $40-200</td><td>Print or outsource</td><td>CHG-DRW-003</td><td>Segmented print acceptable if seams are filled and sealed.</td></tr>
+<tr><td>CHG-BOM-004</td><td>Master</td><td>3D printed lower shell master</td><td>1</td><td>Oversized by measured shrinkage with gu port reference</td><td>Make</td><td>derived estimate $25-150</td><td>Print or outsource</td><td>CHG-DRW-004</td><td>Lower shell can be simpler than upper shell.</td></tr>
+<tr><td>CHG-BOM-005</td><td>Fixture</td><td>Drying support cradle</td><td>1</td><td>Breathable foam or plaster cradle</td><td>Make</td><td>derived estimate $10-40</td><td>Shop-made</td><td>CHG-DRW-005</td><td>Prevents dome sagging and rim distortion.</td></tr>
+<tr><td>CHG-BOM-006</td><td>Fixture</td><td>Firing setter or support ring</td><td>1</td><td>Kiln-safe support for shell</td><td>Make/Buy</td><td>derived estimate $20-120</td><td>Date-check refractory options</td><td>CHG-DRW-006</td><td>Must not fuse to body or block shrinkage.</td></tr>
+<tr><td>CHG-BOM-007</td><td>Tools</td><td>Diamond files and burrs</td><td>1 set</td><td>Fine diamond abrasive tools</td><td>Buy</td><td>derived estimate $15-40</td><td>Date-check before purchase</td><td>CHG-VAL-001</td><td>For cautious post-bisque edge cleanup only.</td></tr>
+<tr><td>CHG-BOM-008</td><td>Measurement</td><td>Tuner and microphone</td><td>1</td><td>Cent-accurate tuner plus recording mic</td><td>Buy</td><td>derived estimate $0-150</td><td>Existing tools okay</td><td>CHG-VAL-002</td><td>Use same setup across prototypes.</td></tr>
+<tr><td>CHG-BOM-009</td><td>Measurement</td><td>Scale and calipers</td><td>1 set</td><td>Mass and dimensional tracking</td><td>Buy</td><td>derived estimate $0-80</td><td>Existing tools okay</td><td>CHG-VAL-003</td><td>Mass change helps track glaze/water loss.</td></tr>
+<tr><td>CHG-BOM-010</td><td>Finish</td><td>Exterior glaze or oxide wash</td><td>1 batch</td><td>Cone-compatible finish</td><td>Buy</td><td>derived estimate $15-60</td><td>Date-check before purchase</td><td>CHG-DRW-007</td><td>Test glaze damping on coupons before full shell.</td></tr>
+<tr><td>CHG-BOM-011</td><td>Protection</td><td>Rim wrap or bumper</td><td>1</td><td>Leather/rope/silicone rim protection</td><td>Buy/Make</td><td>derived estimate $10-75</td><td>Date-check before purchase</td><td>CHG-DRW-008</td><td>Protects fragile rim and improves handling.</td></tr>
+<tr><td>CHG-BOM-012</td><td>Transport</td><td>Padded bag/case</td><td>1</td><td>18-20 in protective case</td><td>Buy</td><td>derived estimate $40-160</td><td>Date-check before purchase</td><td>CHG-DRW-009</td><td>Ceramic transport risk is high.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>sourcing.csv</h2>
+
+<p>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</p>
+
+<table>
+<tr><th>item_id</th><th>item</th><th>required_spec</th><th>search_terms</th><th>supplier_candidates</th><th>date_checked</th><th>unit_price</th><th>lead_time</th><th>substitution_rule</th><th>risk_note</th></tr>
+<tr><td>CHG-SRC-001</td><td>Cone 6 casting slip</td><td>Known shrinkage and mature Cone 6 firing schedule</td><td>cone 6 stoneware porcelain casting slip shrinkage</td><td>TBD</td><td></td><td></td><td></td><td>Substitute only after test bars</td><td>Unknown shrinkage invalidates master scale.</td></tr>
+<tr><td>CHG-SRC-002</td><td>#1 pottery plaster</td><td>Pottery mold plaster in bulk quantity</td><td>USG #1 pottery plaster 75 lb</td><td>TBD</td><td></td><td></td><td></td><td>Equivalent plaster acceptable if absorption is known</td><td>Wrong plaster can ruin slip-casting performance.</td></tr>
+<tr><td>CHG-SRC-003</td><td>Large 3D print service</td><td>18 in dome master or printable master segments</td><td>large format PLA print service mold master</td><td>TBD</td><td></td><td></td><td></td><td>Segmented print acceptable with sealed seams</td><td>Print warp changes shell/tone-field geometry.</td></tr>
+<tr><td>CHG-SRC-004</td><td>Refractory support material</td><td>Kiln-safe setter/support ring</td><td>kiln furniture refractory support ring ceramic firing</td><td>TBD</td><td></td><td></td><td></td><td>Use known kiln-safe material only</td><td>Body can slump or stick during firing.</td></tr>
+<tr><td>CHG-SRC-005</td><td>Diamond abrasives</td><td>Fine diamond tools for ceramic cleanup</td><td>diamond burr needle file ceramic</td><td>TBD</td><td></td><td></td><td></td><td>Use fine grits and light pressure</td><td>Coarse grinding can chip tone fields.</td></tr>
+<tr><td>CHG-SRC-006</td><td>Recording microphone</td><td>Repeatable measurement mic</td><td>measurement microphone tuner musical instrument</td><td>TBD</td><td></td><td></td><td></td><td>Phone mic acceptable for rough first pass</td><td>Inconsistent measurement hides tuning trends.</td></tr>
+<tr><td>CHG-SRC-007</td><td>Rim protection</td><td>Soft durable bumper or wrap for 18 in rim</td><td>handpan rim rope leather bumper silicone edge guard</td><td>TBD</td><td></td><td></td><td></td><td>Prototype with removable wrap first</td><td>Rim protection may damp shell vibration.</td></tr>
+<tr><td>CHG-SRC-008</td><td>Transport case</td><td>Padded 18-20 in case</td><td>18 inch handpan padded bag hard case</td><td>TBD</td><td></td><td></td><td></td><td>Oversize case acceptable</td><td>Transport damage is a major ceramic risk.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>cut-list.csv</h2>
+
+<p>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</p>
+
+<table>
+<tr><th>item_id</th><th>part</th><th>qty</th><th>rough_dimensions_in</th><th>final_dimensions_in</th><th>material</th><th>operation</th><th>fixture_or_tool</th><th>yield_note</th><th>notes</th></tr>
+<tr><td>CHG-CUT-001</td><td>Upper master print segments</td><td>1 set</td><td>20 x 20 x 5 envelope</td><td>18 in fired-equivalent dome scaled for shrinkage</td><td>PLA or resin</td><td>3D print and seal</td><td>Printer or print service</td><td>Segment if printer is smaller than master</td><td>Do not treat printed geometry as final until shrinkage bars are measured.</td></tr>
+<tr><td>CHG-CUT-002</td><td>Lower master print segments</td><td>1 set</td><td>20 x 20 x 3 envelope</td><td>18 in fired-equivalent lower shell scaled for shrinkage</td><td>PLA or resin</td><td>3D print and seal</td><td>Printer or print service</td><td>Segment if needed</td><td>Include gu reference and rim registration.</td></tr>
+<tr><td>CHG-CUT-003</td><td>Upper plaster mold</td><td>1</td><td>24 x 24 x 8 cottle</td><td>Upper dome mold with registration</td><td>#1 pottery plaster</td><td>Mold pour</td><td>Cottle boards</td><td>Single-use setup until mold design proven</td><td>Plan parting line before printing final master.</td></tr>
+<tr><td>CHG-CUT-004</td><td>Lower plaster mold</td><td>1</td><td>24 x 24 x 6 cottle</td><td>Lower shell mold with gu area</td><td>#1 pottery plaster</td><td>Mold pour</td><td>Cottle boards</td><td>Single-use setup until mold design proven</td><td>Keep lower mold simpler for first run.</td></tr>
+<tr><td>CHG-CUT-005</td><td>Drying cradle</td><td>1</td><td>20 x 20 x 5</td><td>Support upper shell without point loads</td><td>Foam/plaster/soft support</td><td>Cut/form</td><td>Knife/saw/rasp</td><td>Reusable</td><td>Must not trap moisture at rim.</td></tr>
+<tr><td>CHG-CUT-006</td><td>Firing support ring</td><td>1</td><td>18-20 OD</td><td>Support shell rim or neutral zone</td><td>Refractory clay/fiber/kiln furniture</td><td>Form/cut</td><td>Kiln-safe tools</td><td>Reusable if it survives</td><td>Test with scrap before full shell.</td></tr>
+<tr><td>CHG-CUT-007</td><td>Tone coupons</td><td>12</td><td>4 x 4 x variable thickness</td><td>3-4 in test fields</td><td>Casting slip or slab clay</td><td>Cast/press small coupons</td><td>Simple plaster tiles</td><td>Many small tests beat one large failed shell</td><td>Label every coupon with clay/body/thickness.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>drawing-brief.md</h2>
+
+<p>Manufacturing drawing and technical product sketch brief.</p>
+
+<h1>Ceramic Hang Drawing Brief</h1>
+
+<h2>Required Views</h2>
+
+<ul>
+<li>Top view with center ding, outer tone-field layout, note labels, field axes, and radial datum.</li>
+<li>Side section through center showing upper dome, lower shell, rim seam, wall thickness, and gu.</li>
+<li>Tone-field detail showing raised/thinned field geometry, relief boundary, thickness target, and strike zone.</li>
+<li>Bottom view showing gu diameter, lower shell curvature, support/rim datum, and optional feet or stand interface.</li>
+<li>Mold split view showing upper mold, lower mold, registration, cottle clearance, and release directions.</li>
+<li>Firing support view showing setter/ring contact areas and shrinkage clearance.</li>
+</ul>
+
+<h2>Critical Dimensions</h2>
+
+<table>
+<tr><th>Dimension</th><th>Why It Matters</th></tr>
+<tr><td>Outer diameter</td><td>Ergonomics, mold size, shell volume</td></tr>
+<tr><td>Dome height</td><td>Body volume and shell stiffness</td></tr>
+<tr><td>Wall thickness</td><td>Tone, durability, drying risk</td></tr>
+<tr><td>Tone-field major/minor axes</td><td>Primary pitch lever</td></tr>
+<tr><td>Tone-field thickness</td><td>Primary pitch lever</td></tr>
+<tr><td>Relief boundary depth/radius</td><td>Field isolation and crack risk</td></tr>
+<tr><td>Gu diameter and wall</td><td>Helmholtz/body coupling</td></tr>
+<tr><td>Rim seam width</td><td>Strength and joining repeatability</td></tr>
+<tr><td>Master scale factor</td><td>Fired final geometry</td></tr>
+</table>
+
+<h2>CAD Notes</h2>
+
+<ul>
+<li>Mark all values as fired dimensions or master dimensions.</li>
+<li>Keep tone-field geometry as named parameters.</li>
+<li>Add build ID and CAD revision to every drawing.</li>
+<li>Do not hide the `TBD` status of ceramic material constants.</li>
+<li>Include a validation table once measured data exists.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>assembly-manual.md</h2>
+
+<p>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</p>
+
+<h1>Ceramic Hang Assembly Manual</h1>
+
+<h2>Scope</h2>
+
+<p>This manual covers the first ceramic handpan-inspired tonal vessel prototypes. It assumes the instrument is slip-cast from upper and lower shell molds and validated as a research build before decorative finishing.</p>
+
+<h2>Tools And Setup</h2>
+
+<ul>
+<li>CAD model for upper shell, lower shell, tone-field islands, gu, rim, and mold split.</li>
+<li>Large-format 3D printer or outsourced print service.</li>
+<li>Plaster mold-making setup: cottle boards, scale, bucket, plaster, mold release, clamps.</li>
+<li>Cone 6 casting slip and known firing schedule.</li>
+<li>Drying cradle and firing support ring.</li>
+<li>Calipers, scale, tuner, microphone, recording app, and spreadsheet/validation log.</li>
+<li>Diamond files/burrs for minimal cleanup.</li>
+<li>Kiln access.</li>
+</ul>
+
+<h2>Process</h2>
+
+<p>1. **Make shrinkage bars**</p>
+<p>   - Cast or form test bars from the actual clay body.</p>
+<p>   - Fire through the intended bisque and glaze schedule.</p>
+<p>   - Replace the assumed 12 percent shrinkage with measured data before final master printing.</p>
+
+<p>2. **Build tone coupons**</p>
+<p>   - Make small raised/thinned field coupons before a full shell.</p>
+<p>   - Vary thickness, field diameter, relief depth, and clay body.</p>
+<p>   - Record pitch, decay, cracking, and perceived strike feel.</p>
+
+<p>3. **Model the first shell**</p>
+<p>   - Model the fired target geometry first.</p>
+<p>   - Apply `master_scale_factor = 1/(1 - shrinkage)`.</p>
+<p>   - Keep the first upper shell conservative: fewer undercuts, larger radii, and enough wall thickness to survive handling.</p>
+
+<p>4. **Print and seal masters**</p>
+<p>   - Print upper and lower shell masters or segments.</p>
+<p>   - Fill segment seams, sand, and seal.</p>
+<p>   - Mark centerline, tone-field index, rim datum, and gu center.</p>
+
+<p>5. **Make plaster molds**</p>
+<p>   - Build cottle boxes with enough plaster thickness for a large dome.</p>
+<p>   - Include registration and mold handling features.</p>
+<p>   - Dry molds fully before slip casting.</p>
+
+<p>6. **Slip cast shells**</p>
+<p>   - Cast upper and lower shells separately.</p>
+<p>   - Record slip batch, pour time, drain time, demold time, room condition, and measured wall thickness.</p>
+<p>   - Support shells in a cradle as they stiffen.</p>
+
+<p>7. **Join and refine**</p>
+<p>   - Join upper/lower shells at leather-hard stage.</p>
+<p>   - Smooth seam and rim.</p>
+<p>   - Keep post-join tone-field carving minimal and documented.</p>
+
+<p>8. **Dry slowly**</p>
+<p>   - Dry under plastic with frequent inspection.</p>
+<p>   - Watch tone-field edges, gu, rim seam, and support contact points.</p>
+
+<p>9. **Bisque fire and measure**</p>
+<p>   - Fire to the clay body&#x27;s recommended bisque schedule.</p>
+<p>   - Measure every tone field and the gu/body resonance before glazing.</p>
+<p>   - Decide whether to continue, revise the mold, or return to coupons.</p>
+
+<p>10. **Finish test**</p>
+<p>    - Test glaze or oxide on coupons before the full body.</p>
+<p>    - If glazing the full shell, leave tone-field strike zones and acoustic edges as controlled test variables.</p>
+
+<p>11. **Final validation**</p>
+<p>    - Record pitch, cents error, decay time, body mode, gu response, crack status, and playability.</p>
+<p>    - Feed results back into the next design table revision.</p>
+
+<h2>Shop Notes</h2>
+
+<ul>
+<li>Do not chase final tuning on the first shell. The first shell is a measurement object.</li>
+<li>Never grind aggressively on fired tone fields.</li>
+<li>Add a protective rim strategy early; ceramic rims are vulnerable.</li>
+<li>Treat transport as a design requirement, not an afterthought.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>validation.csv</h2>
+
+<p>Target/measured values, tolerance, environment, result, and tuning/build action log.</p>
+
+<table>
+<tr><th>build_id</th><th>stage</th><th>date</th><th>clay_body</th><th>shrinkage_expected_pct</th><th>master_scale_factor</th><th>field_id</th><th>target_note</th><th>target_freq_hz</th><th>field_major_in</th><th>field_minor_in</th><th>field_thickness_in</th><th>measured_freq_hz</th><th>cents_error</th><th>decay_sec</th><th>crack_status</th><th>body_mode_hz</th><th>gu_hz</th><th>action</th><th>result</th><th>notes</th></tr>
+<tr><td>CHG-P0</td><td>bisque</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>coupon_A</td><td>G4</td><td>392</td><td>TBD</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>none</td><td></td><td></td><td>Measure coupon before committing full dome</td><td></td><td></td></tr>
+<tr><td>CHG-P0</td><td>bisque</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>coupon_B</td><td>C5</td><td>523.25</td><td>TBD</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>none</td><td></td><td></td><td>Compare thickness sweep</td><td></td><td></td></tr>
+<tr><td>CHG-P1</td><td>greenware</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>T1</td><td>Bb3</td><td>233.08</td><td>3.4</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>none</td><td></td><td></td><td>Check drying distortion</td><td></td><td></td></tr>
+<tr><td>CHG-P1</td><td>bisque</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>T1</td><td>Bb3</td><td>233.08</td><td>3.4</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>TBD</td><td></td><td></td><td>First shell tone-field measurement</td><td></td><td></td></tr>
+<tr><td>CHG-P2</td><td>bisque</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>Ding</td><td>G3</td><td>196</td><td>4.0</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>TBD</td><td>TBD</td><td>TBD</td><td>Measure center ding and gu coupling</td><td></td><td></td></tr>
+<tr><td>CHG-P2</td><td>bisque</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>Gu</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>TBD</td><td>TBD</td><td>TBD</td><td>Tap/blow gu and record body mode</td><td></td><td></td></tr>
+<tr><td>CHG-P3</td><td>glaze_fire</td><td></td><td>TBD</td><td>12</td><td>1.136</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td></td><td></td><td></td><td>TBD</td><td>TBD</td><td>TBD</td><td>Compare glaze shift and damping</td><td></td><td></td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>supplier-rfq.md</h2>
+
+<p>Supplier email/request-for-quote starter.</p>
+
+<h1>Supplier RFQ - Ceramic Hang</h1>
+
+<p>Subject: RFQ - materials and services for slip-cast ceramic tonal vessel prototype</p>
+
+<p>Hello,</p>
+
+<p>I am prototyping an 18 inch slip-cast ceramic tonal vessel and need pricing/lead time for the following items or services:</p>
+
+<ul>
+<li>Cone 6 stoneware or porcelain casting slip with published shrinkage and firing schedule.</li>
+<li>#1 pottery plaster or equivalent pottery mold plaster, 75 lb class quantity.</li>
+<li>Optional large-format 3D print service for an 18-20 inch dome master, or segmented master parts.</li>
+<li>Kiln-safe refractory support material or custom setter/ring options.</li>
+<li>Optional padded case suitable for a fragile 18 inch ceramic handpan-style object.</li>
+</ul>
+
+<p>Please include:</p>
+
+<ul>
+<li>Unit price and quantity breaks.</li>
+<li>Current availability and lead time.</li>
+<li>Shipping estimate to Santa Clara, CA.</li>
+<li>Technical data sheet or material specification.</li>
+<li>Recommended substitutes if the exact item is unavailable.</li>
+</ul>
+
+<p>Notes:</p>
+
+<ul>
+<li>Shrinkage and firing schedule are critical.</li>
+<li>The first run is prototype/research scale, not production volume.</li>
+<li>If substitutions are proposed, please include material compatibility and firing temperature notes.</li>
+</ul>
+
+<p>Thank you,</p>
+
+<p>Tony Koop</p>
+
+<div class="page-break"></div>
+
+<h2>visual-bom-brief.md</h2>
+
+<p>Art direction for an image-forward visual BOM.</p>
+
+<h1>Ceramic Hang Visual BOM Brief</h1>
+
+<h2>Goal</h2>
+
+<p>Create an image-forward one-page visual BOM that explains the ceramic handpan workflow at a glance: digital master, plaster mold, cast shells, tone fields, support fixtures, finishing, and measurement tools.</p>
+
+<h2>Layout</h2>
+
+<ul>
+<li>Header: &quot;Ceramic Hang - Slip-Cast Tonal Vessel Research Build&quot;.</li>
+<li>Hero image: CAD/render or finished prototype clearly labeled as concept/prototype.</li>
+<li>Process strip: tone coupons -&gt; master print -&gt; plaster molds -&gt; greenware shell -&gt; bisque measurement -&gt; final finish.</li>
+<li>BOM table: item number, material/tool, quantity, spec, make/buy, cost/date status, image.</li>
+<li>Physics inset: plate/tone-field model plus gu Helmholtz model.</li>
+<li>Validation inset: field ID, target note, measured pitch, decay, crack status.</li>
+</ul>
+
+<h2>Required Images</h2>
+
+<ul>
+<li>Upper shell CAD/render.</li>
+<li>Lower shell/gu CAD/render.</li>
+<li>Tone coupon test set.</li>
+<li>Mold halves.</li>
+<li>Greenware shell in drying cradle.</li>
+<li>Firing support/ring.</li>
+<li>Measurement setup with mic/tuner.</li>
+<li>Finished or bisque prototype.</li>
+</ul>
+
+<p>Generated images or CAD renders should be marked as placeholders until replaced by shop photos.</p>
+
+<div class="page-break"></div>
+
+<h2>wolfram-starter.wl</h2>
+
+<p>Wolfram starter for physics, optimization, visualization, and validation.</p>
+
+<pre><code>
+(* Ceramic Hang first-order physics starter *)
+
+ClearAll[&quot;Global`*&quot;];
+
+(* Units: SI inside formulas unless noted. *)
+c = 343; (* m/s *)
+
+(* Ceramic material placeholders. Replace with measured test-bar data. *)
+Eceramic = 45*10^9;       (* Pa, derived estimate *)
+rhoCeramic = 2200;        (* kg/m^3, derived estimate *)
+nuCeramic = 0.23;         (* Poisson ratio estimate *)
+kappaDisk = 10.2;         (* boundary/shape coefficient estimate *)
+
+plateHz[h_, a_, E_, rho_, nu_, kappa_] :=
+  (kappa/(2*Pi))*(h/a^2)*Sqrt[E/(rho*(1 - nu^2))];
+
+helmholtzHz[area_, volume_, neck_] :=
+  (c/(2*Pi))*Sqrt[area/(volume*neck)];
+
+centsError[measured_, target_] := 1200*Log[2, measured/target];
+targetFreq[midi_] := 440*2^((midi - 69)/12);
+
+(* G minor 9-note target layout. *)
+notes = {
+  {&quot;Ding&quot;, &quot;G3&quot;, 196.00, 0.1016},
+  {&quot;T1&quot;, &quot;Bb3&quot;, 233.08, 0.0864},
+  {&quot;T2&quot;, &quot;C4&quot;, 261.63, 0.0813},
+  {&quot;T3&quot;, &quot;D4&quot;, 293.66, 0.0762},
+  {&quot;T4&quot;, &quot;F4&quot;, 349.23, 0.0699},
+  {&quot;T5&quot;, &quot;G4&quot;, 392.00, 0.0648},
+  {&quot;T6&quot;, &quot;Bb4&quot;, 466.16, 0.0597},
+  {&quot;T7&quot;, &quot;C5&quot;, 523.25, 0.0559},
+  {&quot;T8&quot;, &quot;D5&quot;, 587.33, 0.0521}
+};
+
+(* Solve rough thickness for each field using the first-order plate model. *)
+roughThickness[targetHz_, radiusM_] :=
+  targetHz*(2*Pi)/kappaDisk*radiusM^2/Sqrt[Eceramic/(rhoCeramic*(1 - nuCeramic^2))];
+
+thicknessTable = Table[
+  {id, note, hz, radius, roughThickness[hz, radius]},
+  { {id, note, hz, radius}, notes}
+];
+
+thicknessTable // TableForm
+
+(* Gu estimate, using a 3.5 in port and rough 700 in^3 body volume. *)
+inch = 0.0254;
+guDiameter = 3.5*inch;
+wall = 0.25*inch;
+bodyVolume = 700*inch^3;
+guArea = Pi*(guDiameter/2)^2;
+guLeff = wall + 0.6*Sqrt[guArea/Pi];
+guHz = helmholtzHz[guArea, bodyVolume, guLeff];
+
+guHz
+</code></pre>
+
+<div class="page-break"></div>
+
+<h2>README.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Ceramic Hang</h1>
+
+<p>Slip-cast ceramic handpan-inspired tonal vessel: a research build for exploring whether a fired ceramic shell can produce playable handpan-like tone fields while retaining the sculptural freedom of 3D printed mold masters.</p>
+
+<p>This is not a conventional steel handpan clone. Steel handpans rely on plastic forming, hammer tuning, and elastic plate behavior. Ceramic is brittle, damped, formulation-dependent, and mostly tunes before firing. This repo treats the idea honestly: first as an empirical acoustic study, then as a buildable instrument family if the test coupons speak.</p>
+
+<h2>Start Here</h2>
+
+<ul>
+<li>[design.md](design.md) - design intent, governing model, target G minor layout, assumptions, prototype ladder.</li>
+<li>[Ceramic-Hang-Design.xlsx](Ceramic-Hang-Design.xlsx) - parametric design table for shell geometry, gu resonance, tone-field targets, and validation inputs.</li>
+<li>[bom.csv](bom.csv) - bill of materials.</li>
+<li>[sourcing.csv](sourcing.csv) - supplier/search tracker with date-check fields.</li>
+<li>[cut-list.csv](cut-list.csv) - print, mold, fixture, and ceramic blank preparation list.</li>
+<li>[assembly-manual.md](assembly-manual.md) - shop workflow from CAD master through fired validation.</li>
+<li>[validation.csv](validation.csv) - measurement log for tone fields, shell/gu coupling, shrinkage, and cracking.</li>
+<li>[risks.md](risks.md) - red-team risk register with verification tests.</li>
+<li>[drawing-brief.md](drawing-brief.md) - drawing/CAD requirements and critical dimensions.</li>
+<li>[visual-bom-brief.md](visual-bom-brief.md) - image-forward documentation plan.</li>
+<li>[wolfram-starter.wl](wolfram-starter.wl) - first-order plate + Helmholtz model starter.</li>
+<li>[cad/ceramic_hang_master.scad](cad/ceramic_hang_master.scad) - OpenSCAD starter for shell/mold concept geometry.</li>
+</ul>
+
+<h2>Concept</h2>
+
+<p>The first serious target is an 18 inch ceramic tonal vessel in a G minor 9-note layout:</p>
+
+<ul>
+<li>Center ding: G3.</li>
+<li>Outer tone-field targets: Bb3, C4, D4, F4, G4, Bb4, C5, D5.</li>
+<li>Bottom gu port: tuned near the low-body resonance, not used as a primary melodic note.</li>
+<li>Clay target: Cone 6 stoneware or porcelain casting slip, measured shrinkage required.</li>
+<li>Manufacturing path: 3D printed master -&gt; plaster mold -&gt; slip-cast upper/lower shells -&gt; bisque test -&gt; glaze strategy -&gt; final validation.</li>
+</ul>
+
+<h2>Development Rule</h2>
+
+<p>Every prototype gets a build ID and a measured record. Ceramic handpan work will only become predictable if the measured data loops back into the next mold, thickness, tone-field, and firing choices.</p>
+
+<h2>Related Repos</h2>
+
+<ul>
+<li>[handpan](../handpan) - conventional handpan design table placeholder.</li>
+<li>[ceramic-tongue-drum](../ceramic-tongue-drum) - ceramic idiophone research neighbor.</li>
+<li>[udu](../udu) - slip-cast ceramic vessel and dual Helmholtz reference.</li>
+<li>[tongue-drum](../tongue-drum) - idiophone documentation done bar.</li>
+</ul>
+
+<h2>License</h2>
+
+<p>[MIT](LICENSE) - see LICENSE for details.</p>
+
+<div class="page-break"></div>
+
+<h2>family-spec.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>member_id</th><th>name</th><th>outer_diameter_in</th><th>height_in</th><th>target_key</th><th>note_count</th><th>wall_target_in</th><th>gu_diameter_in</th><th>prototype_goal</th></tr>
+<tr><td>CHG-P1</td><td>Mini 3-field coupon dome</td><td>10</td><td>2.75</td><td>G minor subset</td><td>3</td><td>0.24</td><td>2.0</td><td>Validate tone-field geometry on a small shell.</td></tr>
+<tr><td>CHG-P2</td><td>Full blank body</td><td>18</td><td>4.5</td><td>None</td><td>0</td><td>0.26</td><td>3.5</td><td>Validate casting/drying/firing and gu/body mode.</td></tr>
+<tr><td>CHG-P3</td><td>Five-note vessel</td><td>18</td><td>4.5</td><td>G minor pentatonic</td><td>5</td><td>0.24</td><td>3.5</td><td>First musical ceramic shell.</td></tr>
+<tr><td>CHG-P4</td><td>Nine-note G minor</td><td>18</td><td>4.5</td><td>G minor</td><td>9</td><td>0.22-0.30</td><td>3.5</td><td>Full handpan-inspired target.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>photo-shotlist.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Ceramic Hang Photo Shotlist</h1>
+
+<h2>Purpose</h2>
+
+<p>Capture enough photos to support the README, capstone deck, visual BOM, print packet, and build-log site.</p>
+
+<h2>Shot List</h2>
+
+<table>
+<tr><th>Shot</th><th>Stage</th><th>Required Content</th><th>Notes</th></tr>
+<tr><td>Hero concept</td><td>CAD/prototype</td><td>Full instrument on neutral background</td><td>Label render/prototype status.</td></tr>
+<tr><td>Tone coupons</td><td>P0</td><td>Array of test fields with labels</td><td>Include ruler/calipers.</td></tr>
+<tr><td>Master print</td><td>CAD/print</td><td>Upper and lower master or print segments</td><td>Show scale.</td></tr>
+<tr><td>Mold making</td><td>Plaster</td><td>Cottle, plaster pour, registration</td><td>Useful for makerspace documentation.</td></tr>
+<tr><td>Greenware upper shell</td><td>Casting</td><td>Tone fields visible in drying cradle</td><td>Capture support method.</td></tr>
+<tr><td>Lower shell/gu</td><td>Casting</td><td>Bottom port and rim seam</td><td>Show gu diameter reference.</td></tr>
+<tr><td>Bisque measurement</td><td>Validation</td><td>Mic/tuner setup and field strike</td><td>Keep same setup for comparison.</td></tr>
+<tr><td>Rim/protection</td><td>Fit</td><td>Bumper/wrap or stand contact</td><td>Important for real-world durability.</td></tr>
+<tr><td>Final detail</td><td>Finish</td><td>Tone-field close-ups</td><td>Show surface finish and strike zones.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>risks.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Ceramic Hang Risks</h1>
+
+<table>
+<tr><th>Risk ID</th><th>Category</th><th>Risk</th><th>Verification Test</th><th>Mitigation</th></tr>
+<tr><td>CHG-RISK-001</td><td>Acoustic</td><td>Ceramic tone fields may not sustain like steel handpan fields.</td><td>Fire tone coupons and record decay time for at least 12 field geometries.</td><td>Pivot to fewer larger fields, a tongue/relief hybrid, or ceramic resonator with metal tone fields.</td></tr>
+<tr><td>CHG-RISK-002</td><td>Acoustic</td><td>First-order plate formulas may miss fired pitch by large margins.</td><td>Compare predicted vs measured frequency on coupons and first mini dome.</td><td>Build empirical correction table before full 9-note shell.</td></tr>
+<tr><td>CHG-RISK-003</td><td>Structural</td><td>Raised/thinned tone fields may crack during drying or firing.</td><td>Inspect coupon and P1/P2 fields at greenware, bone dry, bisque, and glaze stages.</td><td>Increase radii, reduce relief depth, slow drying, change clay body.</td></tr>
+<tr><td>CHG-RISK-004</td><td>Structural</td><td>Large slip-cast dome may slump or warp.</td><td>Fire a blank dome on proposed setter before tone-field body.</td><td>Add support ring, revise dome height, change firing schedule.</td></tr>
+<tr><td>CHG-RISK-005</td><td>Ergonomic</td><td>Ceramic body may be too heavy or fragile for lap playing.</td><td>Weigh P2 shell and test seated/stand support with non-playing handling.</td><td>Use stand/cradle, reduce wall thickness, design protected rim.</td></tr>
+<tr><td>CHG-RISK-006</td><td>Finish</td><td>Glaze may damp tone fields or change pitch.</td><td>Glaze matched coupons and compare before/after decay/pitch.</td><td>Use exterior-only, oxide wash, burnish, or unglazed tone zones.</td></tr>
+<tr><td>CHG-RISK-007</td><td>Supply</td><td>Clay body shrinkage may differ from assumption.</td><td>Fire shrinkage bars before printing final master.</td><td>Update design table and master scale factor.</td></tr>
+<tr><td>CHG-RISK-008</td><td>Fit/Finish</td><td>Post-fire grinding may chip tone fields.</td><td>Test diamond tool cleanup on scrap fired coupons.</td><td>Tune in greenware/bisque stage; avoid aggressive fired correction.</td></tr>
+<tr><td>CHG-RISK-009</td><td>Transport</td><td>Finished ceramic shell may break in normal handling.</td><td>Drop/handling tests only on failed/scrap shells; case fit check.</td><td>Design rim bumper and hard/padded transport case.</td></tr>
+</table>
+</body></html>
