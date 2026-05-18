@@ -382,7 +382,7 @@ mark.hit{background:var(--gold);color:var(--ink);
 
   <div class="status-row">
     <div class="status-label">Status</div>
-    <div class="status-val"><span class="pill pill-private">Private review</span>&nbsp;&nbsp;</div>
+    <div class="status-val"><span class="pill pill-private">V5 explorer-readiness scaffold</span>&nbsp;&nbsp;<span class="muted">not a V5 build-packet candidate</span></div>
   </div>
   <div class="status-row">
     <div class="status-label">Family</div>
@@ -390,16 +390,22 @@ mark.hit{background:var(--gold);color:var(--ink);
   </div>
   <div class="status-row">
     <div class="status-label">Release gates</div>
-    <div class="status-val"><ul class="gates"><li class="gate"><span class="gate-dot block"></span><span class="gate-label">Empirical ceramic tone-field data is required before any public/build-ready release claim.</span></li><li class="gate"><span class="gate-dot block"></span><span class="gate-label">Clay body, shrinkage, glaze damping, and firing behavior remain TBD until fired coupons and prototype shells are measured.</span></li><li class="gate"><span class="gate-dot block"></span><span class="gate-label">CAD web export pending: OpenSCAD source exists, but no browser-ready <code>.glb</code>/<code>.gltf</code> model is present.</span></li></ul></div>
+    <div class="status-val"><ul class="gates"><li class="gate"><span class="gate-dot block"></span><span class="gate-label">Empirical ceramic tone-field data is required before any public/build-ready release claim.</span></li><li class="gate"><span class="gate-dot block"></span><span class="gate-label">Clay body, shrinkage, glaze damping, and firing behavior remain TBD until fired coupons and prototype shells are measured.</span></li><li class="gate"><span class="gate-dot block"></span><span class="gate-label">CAD web export pending: OpenSCAD source exists, but no browser-ready <code>.glb</code>/<code>.gltf</code> model is present.</span></li><li class="gate"><span class="gate-dot block"></span><span class="gate-label">Current visuals are concept/reference only in <code>visual-output-register.csv</code>; no DXF/CAD/design-table row currently carries fabrication authority.</span></li></ul></div>
   </div>
 </article>
 
 <section id="overview" data-toc="Overview" data-toc-group="Project">
   <h1><span class="eyebrow">01 · Overview</span>Ceramic Hang Capstone</h1>
 
-  <p>This explorer is the studio-facing build packet for <strong>ceramic-hang</strong>. It is a private-review empirical scaffold: plate/shell formulas are sanity checks, material and process choices remain TBD, and build-ready claims depend on fired coupon validation. Sections below cover design, BOM, validation, the interactive acoustic model, risks, and capstone deliverables.</p>
+  <p>This explorer is the studio-facing build packet for <strong>ceramic-hang</strong>. It is a V5 explorer-readiness scaffold: plate/shell formulas are sanity checks, material and process choices remain TBD, and build-ready claims depend on fired coupon validation. Sections below cover design, BOM, validation, the interactive acoustic model, risks, visual authority, and capstone deliverables.</p>
 
 
+</section>
+
+<section id="v5-readiness" data-toc="V5 Readiness" data-toc-group="Project">
+  <h1><span class="eyebrow">· V5 readiness</span>Issue #1 deliverable ledger</h1>
+<div class="file open"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">v5-readiness.md</span><span class="file-type">MD</span><span class="file-desc">V5 deliverable status and remaining blockers</span><span class="file-actions"><a href="v5-readiness.md" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-md="v5-readiness.md"></div></div>
+<div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">visual-output-register.csv</span><span class="file-type">CSV</span><span class="file-desc">Concept/reference visual authority register</span><span class="file-actions"><a href="visual-output-register.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="visual-output-register.csv"></div></div>
 </section>
 
 <section id="repo-assets" data-toc="Repo Artifacts" data-toc-group="Project">
@@ -408,6 +414,7 @@ mark.hit{background:var(--gold);color:var(--ink);
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">bom.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="bom.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="bom.csv"></div></div>
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">cut-list.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="cut-list.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="cut-list.csv"></div></div>
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">family-spec.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="family-spec.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="family-spec.csv"></div></div>
+<div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">visual-output-register.csv</span><span class="file-type">CSV</span><span class="file-desc">Visual authority register</span><span class="file-actions"><a href="visual-output-register.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="visual-output-register.csv"></div></div>
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">sourcing.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="sourcing.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="sourcing.csv"></div></div>
 <div class="cards"><div class="card"><div class="k">Workbook</div><div class="v">Ceramic-Hang-Design.xlsx<span class="sub">Ceramic-Hang-Design.xlsx</span></div><p style="margin-top:8px"><a href="Ceramic-Hang-Design.xlsx" target="_blank" rel="noopener">Open</a></p></div></div>
 </section>
@@ -459,7 +466,7 @@ mark.hit{background:var(--gold);color:var(--ink);
 
 <section id="capstone" data-toc="Capstone Deliverables" data-toc-group="Publish">
   <h1><span class="eyebrow">· Capstone deliverables</span>Deck · print packet · explorer</h1>
-  <div class="cards"><div class="card"><div class="k">Slide deck</div><div class="v">capstone-deck.pptx<span class="sub">Workbook → design → BOM → validation → next actions</span></div><p style="margin-top:8px"><a href="capstone-deck.pptx">Open PPTX</a></p></div><div class="card"><div class="k">Print packet</div><div class="v">print-packet.pdf<span class="sub">Letter-size print, take-to-bench reference</span></div><p style="margin-top:8px"><a href="print-packet.pdf">Open PDF</a> · <a href="print-packet.html">Open HTML</a></p></div><div class="card"><div class="k">Manifest</div><div class="v">capstone-manifest.json<span class="sub">Artifact inventory; release gates; required-before-public list</span></div><p style="margin-top:8px"><a href="capstone-manifest.json">Open JSON</a></p></div><div class="card"><div class="k">Studio explorer</div><div class="v">explorer.html<span class="sub">This document. Generated by instrument-maker/scripts/generate_explorer.py.</span></div><p style="margin-top:8px"><a href="explorer.html">Reload</a></p></div></div>
+  <div class="cards"><div class="card"><div class="k">Slide deck</div><div class="v">capstone-deck.pptx<span class="sub">Workbook -> design -> BOM -> validation -> next actions</span></div><p style="margin-top:8px"><a href="capstone-deck.pptx">Open PPTX</a></p></div><div class="card"><div class="k">Print packet</div><div class="v">print-packet.pdf<span class="sub">Letter-size print, take-to-bench reference</span></div><p style="margin-top:8px"><a href="print-packet.pdf">Open PDF</a> · <a href="print-packet.html">Open HTML</a></p></div><div class="card"><div class="k">Manifest</div><div class="v">capstone-manifest.json<span class="sub">Repo-relative artifact inventory and release gates</span></div><p style="margin-top:8px"><a href="capstone-manifest.json">Open JSON</a></p></div><div class="card"><div class="k">V5 readiness</div><div class="v">v5-readiness.md<span class="sub">Issue #1 deliverable ledger and blockers</span></div><p style="margin-top:8px"><a href="v5-readiness.md">Open ledger</a></p></div><div class="card"><div class="k">Visual authority</div><div class="v">visual-output-register.csv<span class="sub">Concept/reference only; no fabrication authority yet</span></div><p style="margin-top:8px"><a href="visual-output-register.csv">Open CSV</a></p></div><div class="card"><div class="k">Studio explorer</div><div class="v">explorer.html<span class="sub">This document. Generated by instrument-maker/scripts/generate_explorer.py and hand-updated for V5 readiness gates.</span></div><p style="margin-top:8px"><a href="explorer.html">Reload</a></p></div></div>
 </section>
 
 <section id="rfq" data-toc="Supplier RFQ" data-toc-group="Publish">
