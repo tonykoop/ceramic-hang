@@ -16,7 +16,7 @@ Packet folder: `/mnt/c/Users/Tony/Documents/GitHub/ceramic-hang`
 | `validation.csv` | Target/measured values, tolerance, environment, result, and tuning/build action log. |
 | `supplier-rfq.md` | Supplier email/request-for-quote starter. |
 | `visual-bom-brief.md` | Art direction for an image-forward visual BOM. |
-| `wolfram-starter.wl` | Wolfram starter for physics, optimization, visualization, and validation. |
+| `ceramic-hang-starter.wl` | Wolfram starter for physics, optimization, visualization, and validation. |
 | `README.md` | Project artifact. |
 | `family-spec.csv` | Project artifact. |
 | `photo-shotlist.md` | Project artifact. |
@@ -393,7 +393,7 @@ Generated images or CAD renders should be marked as placeholders until replaced 
 
 <div class="page-break"></div>
 
-## wolfram-starter.wl
+## ceramic-hang-starter.wl
 
 Wolfram starter for physics, optimization, visualization, and validation.
 
@@ -480,7 +480,7 @@ This is not a conventional steel handpan clone. Steel handpans rely on plastic f
 - [risks.md](risks.md) - red-team risk register with verification tests.
 - [drawing-brief.md](drawing-brief.md) - drawing/CAD requirements and critical dimensions.
 - [visual-bom-brief.md](visual-bom-brief.md) - image-forward documentation plan.
-- [wolfram-starter.wl](wolfram-starter.wl) - first-order plate + Helmholtz model starter.
+- [ceramic-hang-starter.wl](ceramic-hang-starter.wl) - first-order plate + Helmholtz model starter.
 - [cad/ceramic_hang_master.scad](cad/ceramic_hang_master.scad) - OpenSCAD starter for shell/mold concept geometry.
 
 ## Concept

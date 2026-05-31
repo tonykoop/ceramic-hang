@@ -24,7 +24,7 @@ This is not a conventional steel handpan clone. Steel handpans rely on plastic f
 - [v5-readiness.md](v5-readiness.md) - V5 deliverable ledger and remaining
   blockers for issue #1.
 - [visual-bom-brief.md](visual-bom-brief.md) - image-forward documentation plan.
-- [wolfram-starter.wl](wolfram-starter.wl) - first-order plate + Helmholtz model starter.
+- [ceramic-hang-starter.wl](ceramic-hang-starter.wl) - first-order plate + Helmholtz model starter.
 - [cad/ceramic_hang_master.scad](cad/ceramic_hang_master.scad) - OpenSCAD starter for shell/mold concept geometry.
 
 ## Concept
