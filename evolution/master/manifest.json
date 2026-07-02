@@ -1,0 +1,34 @@
+{
+  "product": "ceramic-hang",
+  "pipeline": "studiopipeline:evolution-pipeline",
+  "stage": "0-intake",
+  "master_revision": "pre-commit intake, 2026-07-01",
+  "generated": "2026-07-01",
+  "cad_masters": [
+    {
+      "path": "cad/ceramic_hang_master.scad",
+      "format": "openscad-source",
+      "sha256": "ebf39bd5179677d78b8095f7f690f821d691c084450bb51212f70be1bb0c5449",
+      "authority": "concept_only",
+      "lossy": false,
+      "notes": "Existing named-parameter OpenSCAD concept scaffold; KEPT as-is per V5 refresh instructions. Not fabrication authority until traced to fired/measured ceramic evidence (see v5-readiness.md)."
+    },
+    {
+      "path": "ceramic-hang-starter.wl",
+      "format": "wolfram-source",
+      "sha256": "19ce7b8c56ad1c71eeb9730b32d7d1bcef5c841930120ca3e36ac186b5341cc7",
+      "authority": "derived_preview",
+      "lossy": false,
+      "notes": "First-order plate + Helmholtz model starter; source-only, not executed."
+    },
+    {
+      "path": "Ceramic-Hang-Design.xlsx",
+      "format": "design-table",
+      "sha256": "4e7071316019f4bf731a3a1f666d8024961c79fe08fcf378dd6a57f2829fe695",
+      "authority": "concept_only",
+      "lossy": false,
+      "notes": "Parametric design table for shell geometry, gu resonance, tone-field targets; design-target/assumption values, not measured fabrication authority."
+    }
+  ],
+  "notes": "This is an L1 concept packet (README/v5-readiness.md explicitly deny V5 build-packet candidacy). No STEP export yet. OpenSCAD source + design table + Wolfram starter are concept-level masters only. Gate A (Alpha shop compile) not started pending fired ceramic evidence."
+}

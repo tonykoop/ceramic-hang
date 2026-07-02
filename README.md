@@ -1,7 +1,8 @@
 # Ceramic Hang
 
-Status: V5 explorer-readiness scaffold; not a V5 build-packet candidate until
-the missing measured ceramic evidence and V5 media/export artifacts are present.
+Status: L1 concept packet — V5 explorer-readiness scaffold; explicitly NOT a
+V5 build-packet candidate until the missing measured ceramic evidence and V5
+media/export artifacts are present.
 
 Slip-cast ceramic handpan-inspired tonal vessel: a research build for exploring whether a fired ceramic shell can produce playable handpan-like tone fields while retaining the sculptural freedom of 3D printed mold masters.
 
@@ -24,6 +25,8 @@ This is not a conventional steel handpan clone. Steel handpans rely on plastic f
 - [v5-readiness.md](v5-readiness.md) - V5 deliverable ledger and remaining
   blockers for issue #1.
 - [visual-bom-brief.md](visual-bom-brief.md) - image-forward documentation plan.
+- [evolution/](evolution/) - evolution-pipeline Stage 0 intake of the current
+  concept-level master (Gate A not started).
 - [ceramic-hang-starter.wl](ceramic-hang-starter.wl) - first-order plate + Helmholtz model starter.
 - [cad/ceramic_hang_master.scad](cad/ceramic_hang_master.scad) - OpenSCAD starter for shell/mold concept geometry.
 

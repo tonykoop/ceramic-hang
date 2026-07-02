@@ -1,7 +1,7 @@
 # Ceramic Hang V5 Readiness Ledger
 
-Current status: V5 explorer-readiness scaffold; not a V5 build-packet
-candidate.
+Current status: L1 concept packet — V5 explorer-readiness scaffold; explicitly
+not a V5 build-packet candidate.
 
 This repo already has useful V4-style packet material, a starter OpenSCAD
 model, SVG presentation drawings, a print packet, and an explorer. The V5
